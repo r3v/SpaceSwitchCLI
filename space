@@ -1,0 +1,68 @@
+#!/usr/bin/perl
+
+use warnings;
+use strict;
+
+my $num_args = $#ARGV + 1;
+unless ($num_args > 0) {
+	print "Requires one argument. Please see -help for help.\n";
+	exit 1;
+}
+if ($num_args > 2) {
+	print "Too many arguments. Please see -help for help.\n";
+	exit 1;
+}
+
+my $cmdlineOption=$ARGV[0];
+my $keyCode=undef;
+
+if (($cmdlineOption eq "-h") || ($cmdlineOption eq "-help")) {
+	print "USAGE: space <option>
+This command assumes spaces is configured to change with control-right, control-left and
+control-1, control-2, etc.. Option may be any one of the following:
+	r,right,next,n - Switch to next space to the right
+	l,left,previous,p - Switch to previous space to the left
+	1-0 - Switch from space 1 to 10.\n";
+	exit 0;
+} elsif (($cmdlineOption eq "right") || ($cmdlineOption eq "r") || ($cmdlineOption eq "next") || ($cmdlineOption eq "n")) {
+	#Goto next space
+	$keyCode="124";
+} elsif (($cmdlineOption eq "left") || ($cmdlineOption eq "l") || ($cmdlineOption eq "previous") || ($cmdlineOption eq "p")) {
+	#Goto previous space
+	$keyCode="123";
+} elsif  ($cmdlineOption eq "1") {
+	#Goto space #1
+	$keyCode="18";
+} elsif  ($cmdlineOption eq "2") {
+	#Goto space #2
+	$keyCode="19";
+} elsif  ($cmdlineOption eq "3") {
+	#Goto space #3
+	$keyCode="20";
+} elsif  ($cmdlineOption eq "4") {
+	#Goto space #4
+	$keyCode="21";
+} elsif  ($cmdlineOption eq "5") {
+	#Goto space #5
+	$keyCode="23";
+} elsif  ($cmdlineOption eq "6") {
+	#Goto space #6
+	$keyCode="22";
+} elsif  ($cmdlineOption eq "7") {
+	#Goto space #7
+	$keyCode="26";
+} elsif  ($cmdlineOption eq "8") {
+	#Goto space #8
+	$keyCode="28";
+} elsif  ($cmdlineOption eq "9") {
+	#Goto space #9
+	$keyCode="25";
+} elsif  ($cmdlineOption eq "0") {
+	#Goto space #10
+	$keyCode="29";
+} else {
+	print "I do not understand. Please see -help for help.\n";
+	exit 1;
+}
+
+my $osacmd = `osascript -e 'tell application "System Events" to key code $keyCode using control down'`;
