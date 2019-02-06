@@ -1,4 +1,4 @@
-#SpaceSwitcherCLI
+# SpaceSwitcherCLI
 
 Change active space in OSX via a terminal command.
 
@@ -10,3 +10,7 @@ USAGE: space <option>
 	  l,left,previous,p - Switch to previous space to the left
 	  1-0 - Switch from space 1 to 10.
 ```
+
+### Known Issues
+
+1. [Broken on Mojave](https://github.com/r3v/SpaceSwitchCLI/issues/1#issue-407053529)
